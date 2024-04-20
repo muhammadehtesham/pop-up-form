@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Username | form</title>
+</head>
+
+<body>
+    <div class="container">
+        <button type="submit" onclick="openPopUP()" class="popup-btn">POP UP</button>
+        <div class="form-section" id="popup">
+            <div class="form-section-inner">
+                <form action="" onsubmit="submitFunction()">
+                    <div>
+                        <h1>User Data</h1>
+                    </div>
+                    <div>
+                        <label for="name">Name</label>
+                        <input type="text" placeholder="Enter name" id="name" required>
+                    </div>
+                    <div>
+                        <label for="textarea">Description</label> <br>
+                        <textarea name="textarea" id="textarea" rows="10"></textarea>
+                    </div>
+
+                    <div class="upload-file">
+                        <label for="image">
+                            <input type="file" id="image" style="border: 2px solid;" hidden>
+
+                            <div class="upload-box">
+                                <p>Choose file or drag here</p>
+                            </div>
+                        </label>
+                    </div>
+                    <div>
+                        <input type="submit" value="Save" onclick="saveData()">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+ 
+
+    <section class="table-section ">
+        <div class="table-inner">
+            <table border="1" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Image</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+
+    <script>
+
+        var array = [];
+
+
+        function saveData() {
+
+            var name = document.getElementById('name').value;
+            var textarea = document.getElementById('textarea').value;
+            var image = document.getElementById('image').value;
+
+            array.push({ name, textarea, image });
+
+            console.log(array);
+
+            var tableBody = document.getElementById('tableBody');
+            for (let i = 0; i < array.length; i++) {
+                var newRow = "<tr><td>" + array[i].name + "</td><td>" + array[i].textarea + "</td><td>" + array[i].image + "</td></tr>";
+            }
+
+            tableBody.innerHTML = newRow + tableBody.innerHTML;
+
+
+            document.getElementById("resetForm").reset();
+        }
+
+
+        // openPopUp
+
+
+        let popup = document.getElementById("popup");
+
+        function openPopUP() {
+            popup.classList.add("open-popup");
+        }
+
+
+        function submitFunction(params) {
+            console.log("submit successfully");
+            
+        }
+      
+    </script>
+</body>
+
+</html>
